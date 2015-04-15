@@ -1,0 +1,62 @@
+﻿@using System.Configuration
+@using StripeDemo.Models
+@model StripeDemo.Models.StripeChargeModel
+
+@{
+    ViewBag.Title = "Charge with Stripe";
+    string stripePublishKey = ConfigurationManager.AppSettings["StripePublishKey"];
+}
+
+@Html.ValidationSummary()
+<p>@ViewBag.ChargeId </p>
+<div>
+    @Html.Partial("_stripeform",new StripeCreditCardModel())
+</div>
+@using (Html.BeginForm("Index", "Charge", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form", id="frmCharge" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.EditorForModel()
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            
+            <input type="submit" value="Charge" class="btn btn-default" id="btnCharge"/>
+        </div>
+    </div>
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+
+    <script>
+        
+        $('document').ready(function() {
+            Stripe.setPublishableKey('@stripePublishKey');
+
+            function stripeResponseHandler(status, response) {
+                var $form = $('#frmCharge');
+
+                if (response.error) {
+                    alert(response.error.message);
+                } else {
+                    var token = response.id;
+                    $('#Token').val(token);
+                    $form.get(0).submit();
+                }
+            }
+
+            $('#btnCharge').on('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+
+                Stripe.card.createToken({
+                    number: $('#CardNumber').val(),
+                    cvc: $('#Cvc').val(),
+                    exp_month: $('#ExpiryMonth').val(),
+                    exp_year: $('#ExpiryYear').val()
+                }, stripeResponseHandler);
+            });
+        });
+    </script>
+}

@@ -1,0 +1,13 @@
+﻿@{
+    Layout = null;
+}
+
+<div class="form-group">
+     @Html.LabelForModel(new{@class="control-label col-md-2"})
+    <div class="col-md-10">
+        @RenderBody()
+        @Html.ValidationMessage("", new { @class = "text-danger" })
+    </div>
+</div>
+
+

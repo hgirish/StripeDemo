@@ -1,0 +1,56 @@
+﻿@using System.Configuration
+@using Stripe
+@using StripeDemo.StripeInfrastructure
+@model dynamic
+
+@{
+    ViewBag.Title = "Payment";
+    string stripePublishKey = ConfigurationManager.AppSettings["StripePublishKey"];
+
+
+}
+<div>@ViewBag.Message</div>
+
+@if (ViewBag.Response != null)
+{
+    StripeResponseModel charge = ViewBag.Response;
+    if (charge != null)
+    {
+        foreach (var prop in charge.GetType().GetProperties())
+        {
+            var s = string.Format("{0} = {1}", prop.Name, prop.GetValue(charge, null));
+            <p>@s</p>
+        }
+       
+
+    }
+})
+<h2>Stripe Payment Example</h2>
+<p>Test Card: 4242424242424242</p>
+<p>Expiry Date on card: any future date</p>
+<p>CVV: any 3 digit number</p>
+
+<form action="@Url.Action("Index")" method="POST">
+    <script src="https://checkout.stripe.com/checkout.js"
+            class="stripe-button"
+            data-key="@stripePublishKey"
+            data-image="https://localhost:44301/images/hff-logo.png"
+            data-name="Hands Service"
+            data-description="2 Widgets ($20.00)"
+            data-amount="2000"
+            data-currency="USD"
+            data-panel-label="Pay"
+            data-zip-code="true"
+            data-address-zip="12321"
+            data-label="Pay with Credit Card"
+            @*data-billingaddress="true"
+            data-shippingaddress="true"
+            data-sameaddress="true"*@
+            data-shipping-name="test test"
+            data-shipping-street="123 main street"
+            data-billing-zip="90054"
+            data-shipping-city="Santa Monica"
+            data-shipping-state="CA"
+            data-email="abc@abc.com">
+    </script>
+</form>
