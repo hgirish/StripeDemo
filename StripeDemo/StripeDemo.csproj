@@ -50,9 +50,8 @@
     <Reference Include="Stripe">
       <HintPath>..\packages\Stripe.1.12.0\lib\net40\Stripe.dll</HintPath>
     </Reference>
-    <Reference Include="Stripe.net, Version=2.9.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Shared\Stripe.net.dll</HintPath>
+    <Reference Include="Stripe.net">
+      <HintPath>..\packages\Stripe.net.2.9.0.1\lib\net45\Stripe.net.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -264,7 +263,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
-    <None Include="Project_Readme.html" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

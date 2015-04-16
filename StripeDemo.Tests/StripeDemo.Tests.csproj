@@ -49,9 +49,8 @@
     <Reference Include="SpecsFor">
       <HintPath>..\packages\SpecsFor.4.3.1\lib\net40\SpecsFor.dll</HintPath>
     </Reference>
-    <Reference Include="Stripe.net, Version=2.9.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Shared\Stripe.net.dll</HintPath>
+    <Reference Include="Stripe.net">
+      <HintPath>..\packages\Stripe.net.2.9.0.1\lib\net45\Stripe.net.dll</HintPath>
     </Reference>
     <Reference Include="StructureMap">
       <HintPath>..\packages\structuremap.3.1.0.133\lib\net40\StructureMap.dll</HintPath>
