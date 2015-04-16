@@ -37,8 +37,8 @@ namespace StripeDemo.Controllers
                 Amount = 50,
                 Currency = "USD",
                 Description = "Testing token creation",
-                Email = "fundog@test.com",
-                TokenId = result.TokenId
+                StripeEmail = "fundog@test.com",
+                StripeToken = result.TokenId
             };
             
             var chargeResult = await stripeHelper.ChargeCustomer(chargeCustomerModel);
