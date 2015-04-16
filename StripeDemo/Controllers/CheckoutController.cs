@@ -41,6 +41,10 @@ namespace StripeDemo.Controllers
         [HttpPost]
         public async Task<ActionResult> Index(StripeChargeModel model)
         {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
             Random random = new Random();
             double number = random.NextDouble();
             if (number < 0.01)
@@ -51,7 +55,7 @@ namespace StripeDemo.Controllers
             model.Amount = amount;
             model.Currency = "usd";
             model.Description = string.Format("Charge for : {0}", amount);
-           
+            model.StatementDescriptor = "HFF Store";
             
             var charge = await new StripeHelper().ChargeCustomer(model);
             if (charge.Paid && !charge.IsError)

@@ -25,7 +25,9 @@ namespace StripeDemo.StripeInfrastructure
                     Currency = string.IsNullOrWhiteSpace(model.Currency) ? "USD" : model.Currency,
                     Description = model.Description,
                     CardId = model.StripeToken,
-                    ReceiptEmail = model.StripeEmail
+                    ReceiptEmail = model.StripeEmail,
+                    StatementDescriptor = model.StatementDescriptor
+                    
 
                 };
                 StripeResponseModel result = new StripeResponseModel();
@@ -33,11 +35,12 @@ namespace StripeDemo.StripeInfrastructure
                 {
                     var chargeService = new StripeChargeService();
                     var stripeCharge = chargeService.Create(myCharge);
+                   
                     result = new StripeResponseModel
                     {
                         ChargeId = stripeCharge.Id,
                         FailureMessage = stripeCharge.FailureMessage,
-                        IsError = string.IsNullOrEmpty(stripeCharge.FailureCode),
+                        IsError = !string.IsNullOrEmpty(stripeCharge.FailureCode),
                         Paid = stripeCharge.Paid
                         
                     };
