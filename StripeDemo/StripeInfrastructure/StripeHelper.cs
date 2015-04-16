@@ -24,8 +24,8 @@ namespace StripeDemo.StripeInfrastructure
                     Amount = decimal.ToInt32(model.Amount * 100),
                     Currency = string.IsNullOrWhiteSpace(model.Currency) ? "USD" : model.Currency,
                     Description = model.Description,
-                    CardId = model.TokenId,
-                    ReceiptEmail = model.Email
+                    CardId = model.StripeToken,
+                    ReceiptEmail = model.StripeEmail
 
                 };
                 StripeResponseModel result = new StripeResponseModel();

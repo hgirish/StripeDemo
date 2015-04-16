@@ -50,7 +50,7 @@ namespace StripeDemo.Tests
                     Amount = amount,
                     Currency = "usd",
                     Description = string.Format("Charge for : {0}", amount),
-                    Email = email
+                    StripeEmail = email
                 };
 
             }

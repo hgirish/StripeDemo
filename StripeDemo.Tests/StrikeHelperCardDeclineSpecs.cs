@@ -24,7 +24,7 @@ namespace StripeDemo.Tests
 
                  string token = _resultTask.Result.TokenId;
                  _tokenId = token;
-                 _chargeCustomerModel.TokenId = _tokenId;
+                 _chargeCustomerModel.StripeToken = _tokenId;
 
                  var chargeResultThread = SUT.ChargeCustomer(_chargeCustomerModel);
                  chargeResultThread.Wait();
