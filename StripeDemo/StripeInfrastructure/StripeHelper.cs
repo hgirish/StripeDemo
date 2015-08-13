@@ -24,7 +24,7 @@ namespace StripeDemo.StripeInfrastructure
                     Amount = decimal.ToInt32(model.Amount * 100),
                     Currency = string.IsNullOrWhiteSpace(model.Currency) ? "USD" : model.Currency,
                     Description = model.Description,
-                    CardId = model.StripeToken,
+                    Source = new StripeSourceOptions() { TokenId = model.StripeToken },
                     ReceiptEmail = model.StripeEmail,
                     StatementDescriptor = model.StatementDescriptor
                     
@@ -104,17 +104,17 @@ namespace StripeDemo.StripeInfrastructure
 
                     // set these properties if passing full card details (do not
                     // set these properties if you set TokenId)
-                    CardNumber = createTokenModel.CardNumber,
-                    CardExpirationYear = createTokenModel.ExpiryYear,
-                    CardExpirationMonth = createTokenModel.ExpieryMonth,
+                    Number = createTokenModel.CardNumber,
+                    ExpirationYear = createTokenModel.ExpiryYear,
+                    ExpirationMonth = createTokenModel.ExpieryMonth,
                     //CardAddressCountry = "US", // optional
                     //CardAddressLine1 = "24 Beef Flank St", // optional
                     //CardAddressLine2 = "Apt 24", // optional
                     //CardAddressCity = "Biggie Smalls", // optional
                     //CardAddressState = "NC", // optional
-                    CardAddressZip = createTokenModel.Zip, // optional
-                    CardName = createTokenModel.Name, // optional
-                    CardCvc = createTokenModel.Cvc // optional
+                    AddressZip = createTokenModel.Zip, // optional
+                    Name = createTokenModel.Name, // optional
+                    Cvc = createTokenModel.Cvc // optional
                 };
 
 

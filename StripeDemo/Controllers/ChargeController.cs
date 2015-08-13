@@ -41,7 +41,7 @@ namespace StripeDemo.Controllers
                     Amount = (int) (model.Amount*100),
                     Currency = "usd",
                     Description = "Description for test charge",
-                    CardId = model.Token
+                    Source = new StripeSourceOptions() { TokenId = model.Token }
                 };
                 string stripePrivateKey = ConfigurationManager.AppSettings["StripePrivateKey"];
                 var chargeService = new StripeChargeService(stripePrivateKey);

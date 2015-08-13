@@ -20,6 +20,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -50,8 +51,9 @@
     <Reference Include="Stripe">
       <HintPath>..\packages\Stripe.1.12.0\lib\net40\Stripe.dll</HintPath>
     </Reference>
-    <Reference Include="Stripe.net">
-      <HintPath>..\packages\Stripe.net.2.9.0.1\lib\net45\Stripe.net.dll</HintPath>
+    <Reference Include="Stripe.net, Version=4.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\Packages\Stripe.net.4.2.0\lib\net40\Stripe.net.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
